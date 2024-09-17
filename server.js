@@ -35,9 +35,7 @@ app.use(
 app.use(passUserToView)
 
 app.get('/', (req, res) => {
-  res.render('index.ejs', {
-    user: req.session.user,
-  });
+  res.redirect('/games')
 });
 
 // app.get('/vip-lounge', (req, res) => {
