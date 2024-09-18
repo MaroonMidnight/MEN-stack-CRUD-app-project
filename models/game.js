@@ -28,6 +28,9 @@ const gameSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    photoUrl: {
+        type: String,
+    },
     reviews: [reviewSchema]
 })
 

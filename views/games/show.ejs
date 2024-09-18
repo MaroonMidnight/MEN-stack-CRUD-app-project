@@ -3,31 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Reviews</title>
 </head>
 <body>
     <%- include('../partials/_navbar.ejs') %>
     <h1><%= game.name %></h1>
+    <img class="details-poster" src="<%= game.photoUrl %>" alt="<%= game.name %> poster art" />
     <h2><%= game.genre %></h2>
-
-    <% game.reviews.forEach(review => { %>
-       <p><%= review.username %></p>
-        <p><%= review.rating %>/5</p>
-        <p><%= review.content %></p>
-        <a href="/games/<%= game._id %>/reviews/<%= review._id %>/edit">Edit this review</a>
-        <form action="/games/<%= game._id  %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
-            <button type="submit">Delete this review</button>
-        </form>    
-    <% }) %>
-
-    <form action="/games/<%= game._id %>/reviews" method="POST">
+    <div class="review">
+    <form class="review-form"  action="/games/<%= game._id %>/reviews" method="POST">
         <label for="content">Review:</label>
-        <textarea name="content" id="content" required></textarea>
+        <textarea class="review-box" name="content" id="content" rows="4" cols="50" maxlength="200" style="resize: none;" required placeholder="Type here..."></textarea>
 
         <label for="rating">Rating:</label>    
-        <input type="number" name="rating" id="rating" min="0" max="5" required>/5
+        <input class="rating" type="number" name="rating" id="rating" min="0" max="5" required>/5
 
-        <button type="submit">Create Review</button>
+        <button class="submit" type="submit">Create Review</button> 
+        <% if (typeof message !== 'undefined') { %>
+         <span class="error-message"><%= message %></span>
+        <% } %>
     </form>
+    <div class="review-review">
+    <% game.reviews.forEach(review => { %>
+       <p>Username: <%= review.username %></p>
+        <p>Rating: <%= review.rating %>/5</p>
+        <p><%= review.content %></p>
+        </div>
+        <% if (user) { %>
+            <div class="review-buttons">
+            <a class="edit-link" href="/games/<%= game._id %>/reviews/<%= review._id %>/edit">Edit this review</a>
+            <form action="/games/<%= game._id  %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                <button class="delete-button" type="submit">Delete this review</button>
+            </form>    
+            </div>
+        <% } %>
+    <% }) %>
+
 </body>
 </html>

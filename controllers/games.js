@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const Game = require('../models/game.js')
+// const session = require('express-session')
 
 router.get('/', async function(req, res){
         try {
@@ -29,24 +30,21 @@ router.get('/:gameId', async function(req, res){
     }
 })
 
-router.get('/:gameId/reviews/new', function(req, res){
-        if(req.session.user){
-            res.render('games/new.ejs')
-        } else {
-            res.redirect(`/auth/sign-up?${error}`)
-        }
-})
-
 router.post('/:gameId/reviews',async function(req, res){
     try {
         const currentGame = await Game.findById(req.params.gameId)
+        if(req.session.user){
         req.body.user = req.session.user
         req.body.username = req.session.user.username
         currentGame.reviews.push(req.body)
         await currentGame.save()
-        console.log(currentGame)
-        console.log(req.body)
         res.redirect(`/games/${currentGame._id}`)
+        } else {
+            res.render('games/show.ejs', {
+                game: currentGame,
+                message: 'Please create an account before making a review!'
+            })
+        }
     } catch(err) {
         console.log(err)
         res.redirect('/')
@@ -95,17 +93,7 @@ router.delete('/:gameId/reviews/:reviewId', async function(req, res){
     }
 })
 
-
-
-
-
-// create: “/:gameId/reviews/new”
-// update: “/:gameId/reviews/:reviewId/edit”
-// delete: “/:gameId/reviews/:reviewId/delete”
-
-
-
-
+//games not defined in index.ejs
 
 
 module.exports = router;

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Game Titles</title>
 </head>
 <body>
   <% if (user) { %>
@@ -15,15 +16,17 @@
       <h1>Welcome to the Gamer Reviews, guest.</h1>
       <p>
         <a href="/auth/sign-up">Sign up</a> or
-        <a href="/auth/sign-in">Sign in</a>.
+        <a href="/auth/sign-in">Log in</a>.
       </p>
       <% } %>
       <h1>Game Titles</h1>
-    <ul>
+      <div class="game-titles">
         <% games.forEach(game => { %>
-          <li><a href="/games/<%= game._id %>"><%= game.name %></a></li>
+          <div class="game-card">
+            <a href="/games/<%= game._id %>"><%= game.name %></a>
+            <img class="index-poster" src="<%= game.photoUrl %>" alt="<%= game.name %> poster art" />
+          </div>
         <% }) %>
-      </ul>
-
+      </div>
 </body>
 </html>

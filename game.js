@@ -1,4 +1,6 @@
-const gameList = [{ name: 'Terraria', genre: 'Sandbox'}, { name: 'Call Of Duty', genre: 'First Person Shooter'}, {name: 'Risk of Rain 2', genre: 'Rougelike'}]
+const gameList = [{ name: 'Terraria', genre: 'Sandbox', photoUrl:'https://m.media-amazon.com/images/I/71na5zfzbaL._AC_UF894,1000_QL80_.jpg'},
+   { name: 'Monster Hunter World', genre: 'ARPG', photoUrl: 'https://m.media-amazon.com/images/I/71ztnv9zvrL._AC_UF894,1000_QL80_.jpg'},
+   {name: 'Risk of Rain 2', genre: 'Rougelike', photoUrl: 'https://m.media-amazon.com/images/I/619kfWPa9iL._AC_UF894,1000_QL80_.jpg'}]
 const GameModel = require ('./models/game')
 /*------------------------------- Starter Code -------------------------------*/
 
@@ -26,6 +28,7 @@ const connect = async () => {
 const runQueries = async () => {
   console.log('Queries running.')
   // The functions calls to run queries in our db will go here as we write them.
+  GameModel.deleteMany()
   for (let i = 0; i < gameList.length; i++){
     await GameModel.create(gameList[i])
   }
