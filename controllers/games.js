@@ -18,7 +18,7 @@ router.get('/', async function(req, res){
 
 router.get('/:gameId', async function(req, res){
     try{
-        const game = await Game.findById(req.params.gameId).populate('reviews')
+        const game = await Game.findById(req.params.gameId)
         res.render('games/show.ejs', {
             game: game
         })
@@ -29,14 +29,70 @@ router.get('/:gameId', async function(req, res){
     }
 })
 
-router.post('/new', async function(req, res){
-    try{
-        const newGame = await Game.create(req.body)
-        res.json(newGame)
-    } catch(err){
+router.get('/:gameId/reviews/new', function(req, res){
+    res.render('games/new.ejs')
+})
+
+router.post('/:gameId/reviews',async function(req, res){
+    try {
+        const currentGame = await Game.findById(req.params.gameId)
+        req.body.user = req.session.user
+        req.body.username = req.session.user.username
+        currentGame.reviews.push(req.body)
+        await currentGame.save()
+        console.log(currentGame)
+        console.log(req.body)
+        res.redirect(`/games/${currentGame._id}`)
+    } catch(err) {
         console.log(err)
+        res.redirect('/')
     }
 })
+
+router.get('/:gameId/reviews/:reviewId/edit', async function(req, res){
+    try {
+        const currentGame = await Game.findById(req.params.gameId)
+        const review = currentGame.reviews.id(req.params.reviewId)
+        res.render('games/edit.ejs', {
+            review: review,
+            game: currentGame
+        })
+    } catch(err) {
+        console.log(err)
+        res.redirect('/')
+    }
+})
+
+router.put('/:gameId/reviews/:reviewId', async function(req, res){
+    try {
+        const currentGame = await Game.findById(req.params.gameId)
+        const review = currentGame.reviews.id(req.params.reviewId)
+        review.set(req.body)
+        await currentGame.save()
+        res.redirect(`/games/${currentGame._id}`)
+    } catch(err) {
+        console.log(err)
+        res.redirect('/')
+    }
+})
+
+
+
+
+router.delete('/:gameId/reviews/:reviewId', async function(req, res){
+    try{
+        const currentGame = await Game.findById(req.params.gameId)
+        currentGame.reviews.id(req.params.reviewId).deleteOne()
+        await currentGame.save()
+        res.redirect(`/games/${currentGame._id}`)
+    } catch(err){
+        console.log(err)
+        res.redirect('/')
+    }
+})
+
+
+
 
 
 // create: “/:gameId/reviews/new”
