@@ -7,10 +7,17 @@
     <title>Reviews</title>
 </head>
 <body>
+    <div class="detail-navlink">
     <%- include('../partials/_navbar.ejs') %>
+    </div>
     <h1><%= game.name %></h1>
     <img class="details-poster" src="<%= game.photoUrl %>" alt="<%= game.name %> poster art" />
-    <h2><%= game.genre %></h2>
+    <div class="game-somethin">
+    <h2>Genre: <%= game.genre %></h2>
+    <p>
+        <%= game.description %>
+    </p>
+    </div>
     <div class="review">
     <form class="review-form"  action="/games/<%= game._id %>/reviews" method="POST">
         <label for="content">Review:</label>
@@ -24,13 +31,15 @@
          <span class="error-message"><%= message %></span>
         <% } %>
     </form>
-    <div class="review-review">
     <% game.reviews.forEach(review => { %>
-       <p>Username: <%= review.username %></p>
-        <p>Rating: <%= review.rating %>/5</p>
+    <div class="review-review">
+        <div class="user-detail">
+        <p><%= review.rating %>/5</p>
+        <p><%= review.username %></p>
+        </div>
         <p><%= review.content %></p>
         </div>
-        <% if (user) { %>
+        <% if (user && user._id == review.user._id) { %>
             <div class="review-buttons">
             <a class="edit-link" href="/games/<%= game._id %>/reviews/<%= review._id %>/edit">Edit this review</a>
             <form action="/games/<%= game._id  %>/reviews/<%= review._id %>?_method=DELETE" method="POST">

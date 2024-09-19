@@ -6,13 +6,13 @@
   <link rel="stylesheet" href="/stylesheets/style.css">
   <title>Sign In</title>
 </head>
-<body>
+<body class="background-sign-in">
   <h1>Log in</h1>
   <form class="sign-in-box" action="/auth/sign-in" method="POST">
     <label for="username">Username:</label>
-    <input type="text" name="username" id="username" required />
+    <input type="text" name="username" id="username" placeholder="Enter Username" required />
     <label for="password">Password:</label>
-    <input type="password" name="password" id="password" required />
+    <input type="password" name="password" id="password" placeholder="Enter Password" required />
     <button class="sign-in-button" type="submit">Sign in</button>
   </form>
 </body>

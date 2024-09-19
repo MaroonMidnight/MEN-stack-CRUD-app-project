@@ -20,8 +20,9 @@ router.get('/', async function(req, res){
 router.get('/:gameId', async function(req, res){
     try{
         const game = await Game.findById(req.params.gameId)
+        console.log(game.reviews)
         res.render('games/show.ejs', {
-            game: game
+            game: game,
         })
 
     } catch(err) {
