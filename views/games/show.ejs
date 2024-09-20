@@ -11,17 +11,17 @@
     <%- include('../partials/_navbar.ejs') %>
     </div>
     <h1><%= game.name %></h1>
+    <div class="game-description">
     <img class="details-poster" src="<%= game.photoUrl %>" alt="<%= game.name %> poster art" />
-    <div class="game-somethin">
     <h2>Genre: <%= game.genre %></h2>
-    <p>
-        <%= game.description %>
+    <p class="game-text">
+       <b>Game Description: </b> <%= game.description %>
     </p>
     </div>
     <div class="review">
     <form class="review-form"  action="/games/<%= game._id %>/reviews" method="POST">
         <label for="content">Review:</label>
-        <textarea class="review-box" name="content" id="content" rows="4" cols="50" maxlength="200" style="resize: none;" required placeholder="Type here..."></textarea>
+        <textarea name="content" id="content" rows="4" cols="50" maxlength="200" style="resize: none;" required placeholder="Type here..."></textarea>
 
         <label for="rating">Rating:</label>    
         <input class="rating" type="number" name="rating" id="rating" min="0" max="5" required>/5

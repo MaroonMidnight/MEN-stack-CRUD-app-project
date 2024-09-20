@@ -43,7 +43,7 @@ router.post('/:gameId/reviews',async function(req, res){
         } else {
             res.render('games/show.ejs', {
                 game: currentGame,
-                message: 'Please create an account before making a review!'
+                message: 'Please create an account or log in before making a review!'
             })
         }
     } catch(err) {

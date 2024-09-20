@@ -172,6 +172,16 @@ input[type=text]:focus, input[type=password]:focus {
     margin: 20px;
 }
 
+.game-description {
+    display: flex;
+    flex-direction: column;
+}
+
+.game-text {
+    display: flex;
+    flex-direction: row;
+}
+
 .edit-link {
     background-color: blue;
     color: white;
@@ -211,6 +221,7 @@ input[type=text]:focus, input[type=password]:focus {
     justify-content: flex-start;
     width: 100%;
     background-color: #f1f1f1;
+    padding-left: 10px;
 }
 
 .review-review {
@@ -260,12 +271,57 @@ input[type=text]:focus, input[type=password]:focus {
     width: 100%;
 }
 
+.edit-background {
+    background-image: url("https://marketplace.canva.com/EAE_NRav_uY/1/0/1600w/canva-red-neon-organized-desktop-gaming-background---desktop-wallpaper-2eq-ewMjw4U.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.edit-form {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 100vw;
+    padding: 15px;
+    margin: 230px;
+    width: 500px;
+    height: 500px;
+    font-size: 25px;
+    border-radius: 20px;
+}
+
+textarea {
+    width: 100%;
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+}
+
+.edit-edit-button {
+    background-color: blue;
+    color: white;
+    font-size: 15px;
+    width: 100%;
+    height: 50px;
+    padding: 5px 15px;
+    margin: 15px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.edit-edit-button:hover {
+    background-color: rgb(12, 12, 184)
+}
 
 .error-message {
     display: flex;
     flex-direction: column;
-    background-color: white;
-    color: black;
+    background-color: #F1F1F1;
+    color: red;
     border-radius: 5px;
     max-width: 403px;
 }

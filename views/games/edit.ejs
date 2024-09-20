@@ -6,15 +6,15 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
     <title>Editing your review</title>
 </head>
-<body>
+<body class="edit-background">
     <%- include('../partials/_navbar.ejs') %>
-    <h1>Edit your review</h1>
-    <form action="/games/<%= game._id %>/reviews/<%= review._id %>/?_method=PUT" method="POST">
+    <h1 style="color: white;">Edit your review</h1>
+    <form class="edit-form" action="/games/<%= game._id %>/reviews/<%= review._id %>/?_method=PUT" method="POST">
         <label for="content">Review:</label>
-        <textarea name="content" id="content" required ><%= review.content %></textarea>
+        <textarea name="content" id="content" required rows="4" cols="50" maxlength="200" style="resize: none;" ><%= review.content %></textarea>
         <label for="rating">Rating:</label>    
         <input type="number" name="rating" id="rating" min="0" max="5" required value="<%= review.rating %>">/5
-        <button type="submit">Update Review</button>
+        <button class="edit-edit-button" type="submit">Update Review</button>
     </form>
 </body>
 </html>
