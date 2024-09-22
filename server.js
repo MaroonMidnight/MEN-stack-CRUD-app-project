@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
 // });
 
 app.use('/auth', authController);
-app.use(isSignedIn)
+// app.use(isSignedIn)
 app.use('/games', gamesCtrl)
 
 app.listen(port, () => {
