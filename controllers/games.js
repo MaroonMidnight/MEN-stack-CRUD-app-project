@@ -29,10 +29,6 @@ router.get('/:gameId', async function(req, res){
     }
 })
 
-router.get('/:gameId/reviews/new', function(req, res){
-    res.render('games/new.ejs')
-})
-
 router.post('/:gameId/reviews',async function(req, res){
     try {
         const currentGame = await Game.findById(req.params.gameId)
