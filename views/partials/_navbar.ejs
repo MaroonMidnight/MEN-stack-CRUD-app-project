@@ -1,10 +1,13 @@
+<p class="nav-links">
 <nav>
     <% if(user) { %>
       <!-- <a href="/users/<%= user._id %>/applications">Your Apps</a> -->
-      <a href="/auth/sign-out">Sign Out</a>
+      <a href="/auth/sign-out">Log Out</a>
       <!-- <a href="/users/<%= user._id %>/reviews">Your Reviews</a> -->
     <% } else { %>
-      <a href="/auth/sign-in">Sign In</a>
+      <a href="/auth/sign-in">Log In</a>
       <a href="/auth/sign-up">Sign Up</a>
     <% } %>
+    <a href="/games/index.ejs">Home</a>
   </nav>
+</p>

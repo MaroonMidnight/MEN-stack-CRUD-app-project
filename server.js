@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const morgan = require('morgan');
 const session = require('express-session');
+const path = require('path')
 
 const authController = require('./controllers/auth.js');
 const gamesCtrl = require('./controllers/games.js')
@@ -33,18 +34,21 @@ app.use(
 );
 
 app.use(passUserToView)
+app.use(express.static(path.join(__dirname, "public")));
+app.get("/", async (req, res) => {
+  res.redirect("/games");
+});
+// app.use((req, res, next) => {
+//   if(req.session.message) {
+//     res.locals.message = req.session.message
+//     req.session.message = null
+//   }
+//   next()
+// })
 
 app.get('/', (req, res) => {
   res.redirect('/games')
 });
-
-// app.get('/vip-lounge', (req, res) => {
-//   if (req.session.user) {
-//     res.send(`Welcome to the party ${req.session.user.username}.`);
-//   } else {
-//     res.send('Sorry, no guests allowed.');
-//   }
-// });
 
 app.use('/auth', authController);
 // app.use(isSignedIn)

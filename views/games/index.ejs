@@ -3,27 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>Game Titles</title>
 </head>
 <body>
   <% if (user) { %>
-    <h1>Welcome to the Gamer Reviews, <%= user.username %>!</h1>
-    <p>
+    <div class="hero-image">
+    <h1 class="hero-text">Welcome to the Gamer Reviews, <%= user.username %>!</h1>
+    <p class="nav-links">
       <a href="/auth/sign-out">Sign out</a>
     </p>
+    </div>
     <% } else { %>
-      <h1>Welcome to the Gamer Reviews, guest.</h1>
-      <p>
+      <div class="hero-image">
+      <h1 class="hero-text">Welcome to the Gamer Reviews, guest.</h1>
+      <p class="nav-links">
         <a href="/auth/sign-up">Sign up</a> or
-        <a href="/auth/sign-in">Sign in</a>.
+        <a href="/auth/sign-in">Log in</a>.
       </p>
+      </div>
       <% } %>
       <h1>Game Titles</h1>
-    <ul>
+      <div class="game-titles">
         <% games.forEach(game => { %>
-          <li><a href="/games/<%= game._id %>"><%= game.name %></a></li>
+          <div class="game-card">
+            <a href="/games/<%= game._id %>"><%= game.name %></a>
+            <a href="/games/<%= game._id %>"<%= game.name %>><img class="index-poster" src="<%= game.photoUrl %>" alt="<%= game.name %> poster art" /></a>
+          </div>
         <% }) %>
-      </ul>
-
+      </div>
 </body>
 </html>

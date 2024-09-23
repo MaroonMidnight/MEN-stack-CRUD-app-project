@@ -2,27 +2,29 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="/stylesheets/style.css">
   <title>Sign Up</title>
 </head>
-<body>
+<body class="background-sign-up">
   <% if (error) { %>
    <p><%= error %></p>
   <% } %>
   <h1>Create a new account!</h1>
-  <form action="/auth/sign-up" method="POST">
+  <form class="sign-up-box" action="/auth/sign-up" method="POST">
     <label for="username">Username:</label>
-    <input type="text" name="username" id="username" required />
+    <input type="text" name="username" id="username" placeholder="Enter Username" required />
     <label for="password">Password:</label>
-    <input type="password" name="password" id="password" required />
+    <input type="password" name="password" id="password" placeholder="Enter Password" required />
     <label for="confirmPassword">Confirm Password:</label>
     <input 
       type="password"
       name="confirmPassword"
       id="confirmPassword"
+      placeholder="Confirm Password"
       required 
     />
-    <button type="submit">Sign up</button>
+    <button class ="sign-up-button" type="submit">Sign up</button>
   </form>
 </body>
 </html>
