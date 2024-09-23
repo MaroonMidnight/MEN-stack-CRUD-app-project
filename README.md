@@ -12,4 +12,4 @@ The Gamer reviews is a website where users can reviews videogames that are on th
 
 
 
-Tech used: JS, CSS, HTML
+Tech used: JS, CSS, HTML, MONGODB, Express
